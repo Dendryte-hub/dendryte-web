@@ -8,7 +8,6 @@ import starlight from "@astrojs/starlight";
 // https://astro.build/config
 export default defineConfig({
   site: "https://dendryte.xyz",
-  base: "dendryte-web",
   image: {
     domains: ["images.unsplash.com"],
   },
@@ -106,6 +105,5 @@ export default defineConfig({
   experimental: {
     clientPrerender: true,
     directRenderScript: true,
-  },
-  adapter: vercelStatic(),
+  }
 });
