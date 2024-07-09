@@ -92,7 +92,7 @@ const monitorsCollection = defineCollection({
   type: "content",
   schema: ({ image }) => z.object ({
   title: z.string(),
-  description: z.sting(),
+  description: z.string(),
   cardImage: image(),
   cardImageAlt: z.string(),
   }),
