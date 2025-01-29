@@ -14,8 +14,8 @@ const subTitle: string =
   "Have questions or want to discuss a project? Reach out, and let's craft the perfect solution with our tools and services.";
 const formTitle: string = "Fill in the form below";
 const formSubTitle: string = "We'll get back to you in 1-2 business days.";
----
 
+---
 <!-- Contact Us -->
 <section class="mx-auto max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14">
   <div class="mx-auto max-w-2xl lg:max-w-5xl">
@@ -39,7 +39,7 @@ const formSubTitle: string = "We'll get back to you in 1-2 business days.";
         </h2>
         <!-- Form for user input with various input fields.-->
         <!-- Each field utilizes a different input component for the specific type of input (text, email, phone, and textarea)-->
-        <form>
+        <form method="POST">
           <div class="grid gap-4">
             <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
               <TextInput
@@ -50,7 +50,7 @@ const formSubTitle: string = "We'll get back to you in 1-2 business days.";
               <TextInput
                 id="hs-lastname-contacts"
                 label="Last Name"
-                name="hs-firstname-contacts"
+                name="hs-lastname-contacts"
               />
             </div>
             <EmailContactInput id="hs-email-contacts" />
@@ -100,7 +100,7 @@ const formSubTitle: string = "We'll get back to you in 1-2 business days.";
           heading="Contact us by email"
           content="Prefer the written word? Drop us an email at"
           isLinkVisible={true}
-          linkTitle="support@screwfast.uk"
+          linkTitle="info@dendryte.xyz"
           linkURL="#"
           ><Icon name="envelopeOpen" />
         </ContactIconBlock>
@@ -108,3 +108,65 @@ const formSubTitle: string = "We'll get back to you in 1-2 business days.";
     </div>
   </div>
 </section>
+<script is:inline>
+  const get = (id) => document.getElementById(id) || { value: '' }
+
+
+  if (Astro.request.method === "POST") {
+    console.error("Received a POST");
+    try {
+      const data = await Astro.request.formData();
+      console.log("Received data: ", data);
+      const first_name = data.get('hs-firstname-contacts');
+      const last_name = data.get('hs-lastname-contacts');
+      const email = data.get('hs-email-contacts');
+      const phone_number = data.get('hs-phone-number');
+      const detail = data.get('hs-about-contacts');
+
+      console.log("Received data: ", data);
+    } catch(error) {
+    if (error instanceof Error) {
+      console.error(error.message);
+      }
+    }
+
+  }
+
+  // save and retrieve generic formdata from localstorage
+  const getFormData = () => {
+    const store = Object.create(null)
+    store.first_name = get('hs-firstname-contacts').value
+    store.last_name = get('hs-lastname-contacts').value
+    store.email = get('hs-email.contacts')?.value
+    store.phone_number = get('hs-phone-number')?.value
+    store.detail = get('hs-about-contacts')?.value
+    return store
+  }
+
+  // end: localStorage
+
+  // window.onload = () => {} // don't know why this won't work
+
+  const sendmail = async () => {
+    console.log("Attempting to send mail")
+    const { first_name, last_name, email, phone_number, detail } = getFormData()
+    const data = await fetch('/api/sendmail.json', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({first_name, last_name, email, phone_number, detail}),
+    })
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error(res.status)
+        }
+        return res.json()
+      })
+      .catch((err) => {
+        console.log('Error', err)
+        throw new Error('Network error.')
+      })
+    console.log(data)
+  }
+</script>
