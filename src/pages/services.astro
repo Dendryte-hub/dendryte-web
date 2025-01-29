@@ -11,6 +11,8 @@ import blueprints from "@images/blueprints-image.avif";
 import personWorking from "@images/person-working.avif";
 import beforeAfter from "@images/rain_canyon.avif";
 import constructionWorkers from "@images/construction-workers.avif";
+import riskDashboard from "@images/risk-dashboard.avif";
+import retainingWall from "@images/retaining-wall.avif";
 import aerialView from "@images/aerial-view.avif";
 import usingTools from "@images/using-tools.avif";
 import progressBuilding from "@images/progress-building.avif";
@@ -42,8 +44,8 @@ const articles: Article[] = [
     single: false,
     imgOne: blueprints,
     imgOneAlt: "Blueprints and digital tablet with construction plans.",
-    imgTwo: personWorking,
-    imgTwoAlt: "Person working in the office",
+    imgTwo: riskDashboard,
+    imgTwoAlt: "Dashboard showing numbers",
   },
   {
     isRightSection: false,
@@ -61,7 +63,7 @@ const articles: Article[] = [
     title: "Ensuring Long-lasting Performance",
     subTitle:
       "Our commitment to your project doesn't end at completion. Dendryte offers ongoing maintenance and support services to ensure your project's longevity and performance. From regular check-ups to emergency assistance, our responsive team is there to provide seamless support.",
-    img: usingTools,
+    img: retainingWall,
     imgAlt:
       "Man in orange and black vest wearing white helmet holding yellow and black power tool",
   },
@@ -92,12 +94,12 @@ const pageTitle: string = `Services | ${SITE.title}`;
     "@id": "https://dendryte.xyz/services",
     "url": "https://dendryte.xyz/services",
     "name": "Expert Consultation Services | Dendryte",
-    "description": "Uniting expertise with your vision, Dendryte provides exceptional service and comprehensive solutions in the hardware and construction industry, from consultation to project completion.",
+    "description": "Uniting expertise with your vision, Dendryte provides cutting edge risk assessment and monitoring solutions.",
     "isPartOf": {
         "@type": "WebSite",
         "url": "https://dendryte.xyz",
         "name": "Dendryte",
-        "description": "Dendryte offers top-tier hardware tools and expert construction services to meet all your project needs."
+        "description": "Dendryte offers top-tier risk assessment and monitoring."
     },
     "inLanguage": "en-US"
   }}
@@ -105,7 +107,7 @@ const pageTitle: string = `Services | ${SITE.title}`;
   <!--MainSection is the introductory section of the page, it also contains a CTA button-->
   <MainSection
     title="Uniting Expertise with Your Vision"
-    subTitle="At Dendryte, we take pride in providing comprehensive solutions and exceptional service in the hardware and construction industry. Our experienced team is dedicated to supporting your project from inception to completion with a range of specialized services."
+    subTitle="At Dendryte, we take pride in providing comprehensive solutions and exceptional service in risk analysis and monitoring."
     btnExists={true}
     btnTitle="Schedule a Consultation"
     btnURL="#"
@@ -146,25 +148,4 @@ const pageTitle: string = `Services | ${SITE.title}`;
       );
     })
   }
-  <!--FeaturesStats section showcases essential stats valuable to users-->
-  <FeaturesStats
-    title="By the Numbers"
-    subTitle="Our commitment to quality and reliability is evident in every project we undertake. At Dendryte, we are dedicated to delivering industry-leading services that ensure your assets are covered."
-    mainStatTitle="96%"
-    mainStatSubTitle="of our clients rate their experience with Dendryte as exceptional"
-    stats={[
-      {
-        stat: "99.8%",
-        description: "project retention rate",
-      },
-      {
-        stat: "5,000+",
-        description: "successful installations",
-      },
-      {
-        stat: "85%",
-        description: "client growth year-over-year",
-      },
-    ]}
-  />
 </MainLayout>
